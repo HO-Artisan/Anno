@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "anno",
+  "version": "${version}",
+  "name": "Anno",
+  "description": "Make annotation great again!",
+  "authors": [
+    "HO-Artisan"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/anno/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "ho.artisan.anno.client.AnnoClient"
+    ],
+    "main": [
+      "ho.artisan.anno.Anno"
+    ],
+    "fabric-datagen": [
+      "ho.artisan.anno.datagen.AnnoDataGen"
+    ]
+  },
+  "mixins": [
+    "anno.mixins.json"
+  ],
+  "accessWidener" : "anno.accesswidener",
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_4915": ["ho/artisan/anno/datagen/AnnoItemModelGenerator"]
+    }
+  }
+}

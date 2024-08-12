@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "ho.artisan.anno.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ItemModelGeneratorMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
