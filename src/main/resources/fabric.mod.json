@@ -28,7 +28,8 @@
   "accessWidener" : "anno.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "fabric": "*"
+    "fabric": "*",
+    "minecraft": ">=${minecraft_version}"
   },
   "custom": {
     "loom:injected_interfaces": {
