@@ -20,7 +20,7 @@ public interface Resolver<A extends Annotation> {
     default <T> Identifier getID(Target<T> target, Class<?> registration) {
         String namespace = registration.getAnnotation(ID.class).value().toLowerCase();
         String path = target.field.getAnnotation(ID.class).value().toLowerCase();
-        return new Identifier(namespace, path);
+        return Identifier.of(namespace, path);
     }
 
     default boolean condition(Field field) {

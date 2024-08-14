@@ -37,7 +37,7 @@ public class LangResolver implements DataGenResolver<Lang> {
     @Override
     public void apply(FabricDataGenerator generator, FabricDataGenerator.Pack pack) {
         for (String langCode : map.langCodes()) {
-            pack.addProvider((FabricDataGenerator.Pack.Factory<DataProvider>) output -> new AnnoLanguageProvider(output, langCode, map.get(langCode)));
+            pack.addProvider((FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>) (output, lookup) -> new AnnoLanguageProvider(output, lookup, langCode, map.get(langCode)));
         }
     }
 

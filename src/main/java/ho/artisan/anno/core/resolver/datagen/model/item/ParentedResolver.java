@@ -10,7 +10,7 @@ public class ParentedResolver extends ModelResolver<Parented> {
     @Override
     public <T> void process(Target<T> target, Class<?> registration) {
         Identifier id = getID(target, registration);
-        Identifier parent = new Identifier(id.getNamespace(), target.field().getAnnotation(Parented.class).value());
+        Identifier parent = Identifier.of(id.getNamespace(), target.field().getAnnotation(Parented.class).value());
         if (target.object() instanceof Item item) {
             blockModel(generator -> generator.registerParentedItemModel(item, parent));
         }else if (target.object() instanceof Block block) {

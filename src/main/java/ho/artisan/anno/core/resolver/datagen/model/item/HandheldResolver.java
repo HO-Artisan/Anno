@@ -12,7 +12,7 @@ public class HandheldResolver extends ModelResolver<Handheld> {
         Item item = (Item) target.object();
         Identifier id = getID(target, registration);
         String texture = target.field().getAnnotation(Handheld.class).value().replace("$", "item/" + id.getPath());
-        Identifier path = new Identifier(id.getNamespace(), texture);
+        Identifier path = Identifier.of(id.getNamespace(), texture);
         itemModel(generator -> generator.anno$register(item, path, Models.HANDHELD));
     }
 

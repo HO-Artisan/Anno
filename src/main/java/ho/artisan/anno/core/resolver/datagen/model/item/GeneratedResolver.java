@@ -12,7 +12,7 @@ public class GeneratedResolver extends ModelResolver<Generated> {
         Item item = (Item) target.object();
         Identifier id = getID(target, registration);
         String texture = target.field().getAnnotation(Generated.class).value().replace("$", "item/" + id.getPath());
-        Identifier path = new Identifier(id.getNamespace(), texture);
+        Identifier path = Identifier.of(id.getNamespace(), texture);
         itemModel(generator -> generator.anno$register(item, path, Models.GENERATED));
     }
 

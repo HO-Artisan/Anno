@@ -20,7 +20,7 @@ public class ItemModelGeneratorMixin implements AnnoItemModelGenerator {
     @Override
     public void anno$register(Identifier item, Identifier texture, Model model) {
         ItemModelGenerator generator = (ItemModelGenerator) (Object) this;
-        Identifier id = new Identifier(item.getNamespace(), "item/" + item.getPath());
+        Identifier id = Identifier.of(item.getNamespace(), "item/" + item.getPath());
         model.upload(id, TextureMap.layer0(texture), generator.writer);
     }
 }
