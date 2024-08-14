@@ -11,6 +11,12 @@ public interface Resolver<A extends Annotation> {
     <T> void process(Target<T> target, Class<?> registration);
     Class<A> annoClass();
 
+    default void process(Field field, Class<?> clazz) {
+        if (isAnnotated(field) && wrap(field) != null) {
+            process(new Target<>(field, wrap(field)), clazz);
+        }
+    }
+
     default <T> Identifier getID(Target<T> target, Class<?> registration) {
         String namespace = registration.getAnnotation(ID.class).value().toLowerCase();
         String path = target.field.getAnnotation(ID.class).value().toLowerCase();

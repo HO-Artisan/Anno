@@ -1,5 +1,6 @@
 package ho.artisan.anno;
 
+import ho.artisan.anno.example.AnnoRegistration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;

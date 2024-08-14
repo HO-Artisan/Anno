@@ -6,6 +6,7 @@ import ho.artisan.anno.core.annotation.vanilla.Reg;
 import ho.artisan.anno.core.resolver.DataGenResolver;
 import ho.artisan.anno.datagen.provider.AnnoLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.data.DataProvider;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 
@@ -34,9 +35,9 @@ public class LangResolver implements DataGenResolver<Lang> {
     }
 
     @Override
-    public void apply(FabricDataGenerator generator) {
+    public void apply(FabricDataGenerator generator, FabricDataGenerator.Pack pack) {
         for (String langCode : map.langCodes()) {
-            generator.addProvider(new AnnoLanguageProvider(generator, langCode, map.get(langCode)));
+            pack.addProvider((FabricDataGenerator.Pack.Factory<DataProvider>) output -> new AnnoLanguageProvider(output, langCode, map.get(langCode)));
         }
     }
 

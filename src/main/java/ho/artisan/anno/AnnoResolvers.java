@@ -66,11 +66,11 @@ public class AnnoResolvers {
         return null;
     }
 
-    public static void dataGen(FabricDataGenerator generator, Class<?> registration) {
-        dataGen(generator, registration, identifier -> true);
+    public static void dataGen(FabricDataGenerator generator, FabricDataGenerator.Pack pack, Class<?> registration) {
+        dataGen(generator, pack, registration, identifier -> true);
     }
 
-    public static void dataGen(FabricDataGenerator generator, Class<?> registration, Predicate<Identifier> filter) {
+    public static void dataGen(FabricDataGenerator generator, FabricDataGenerator.Pack pack, Class<?> registration, Predicate<Identifier> filter) {
         if (registration.isAnnotationPresent(ID.class)) {
             List<Field> fields = List.of(registration.getFields());
             for (Map.Entry<Identifier, DataGenResolver<?>> entry : DATAGEN_RESOLVERS.entrySet()) {
@@ -83,7 +83,7 @@ public class AnnoResolvers {
                             .map(resolver::wrap)
                             .filter(Objects::nonNull)
                             .forEach(target -> resolver.process(target, registration));
-                    resolver.apply(generator);
+                    resolver.apply(generator, pack);
                 }
             }
         }else {
@@ -114,6 +114,4 @@ public class AnnoResolvers {
             throw new RuntimeException(registration + " must be annotated by " + ID.class);
         }
     }
-
-    public static void load() {}
 }

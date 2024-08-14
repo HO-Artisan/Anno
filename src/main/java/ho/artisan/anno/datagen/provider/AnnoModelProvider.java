@@ -1,20 +1,21 @@
 package ho.artisan.anno.datagen.provider;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class AnnoModelProvider extends FabricModelProvider {
-    public final List<Consumer<BlockStateModelGenerator>> blocks = new ArrayList<>();
-    public final List<Consumer<ItemModelGenerator>> items = new ArrayList<>();
+    private final List<Consumer<BlockStateModelGenerator>> blocks;
+    private final List<Consumer<ItemModelGenerator>> items;
 
-    public AnnoModelProvider(FabricDataGenerator generator) {
-        super(generator);
+    public AnnoModelProvider(FabricDataOutput output, List<Consumer<BlockStateModelGenerator>> blocks, List<Consumer<ItemModelGenerator>> items) {
+        super(output);
+        this.blocks = blocks;
+        this.items = items;
     }
 
     @Override

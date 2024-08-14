@@ -16,11 +16,8 @@ public abstract class ModelResolver<A extends Annotation> implements DataGenReso
     private final List<Consumer<ItemModelGenerator>> items = new ArrayList<>();
 
     @Override
-    public void apply(FabricDataGenerator generator) {
-        AnnoModelProvider modelProvider = new AnnoModelProvider(generator);
-        modelProvider.blocks.addAll(this.blocks);
-        modelProvider.items.addAll(this.items);
-        generator.addProvider(modelProvider);
+    public void apply(FabricDataGenerator generator, FabricDataGenerator.Pack pack) {
+        pack.addProvider((FabricDataGenerator.Pack.Factory<AnnoModelProvider>) output -> new AnnoModelProvider(output, blocks, items));
     }
 
     public void blockModel(Consumer<BlockStateModelGenerator> consumer) {

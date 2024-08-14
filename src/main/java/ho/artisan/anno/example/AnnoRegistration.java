@@ -1,4 +1,4 @@
-package ho.artisan.anno;
+package ho.artisan.anno.example;
 
 import ho.artisan.anno.core.annotation.ID;
 import ho.artisan.anno.core.annotation.datagen.Lang;
