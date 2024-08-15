@@ -17,11 +17,16 @@ public class RegResolver implements Resolver<Reg> {
             String name = target.field().getAnnotation(Reg.class).value().toUpperCase();
             Registry<T> registry = (Registry<T>) Registries.class.getField(name).get(null);
             Registry.register(registry, id, target.object());
-        } catch (NoSuchFieldException | IllegalAccessException ignored) {}
+        } catch (Exception ignored) {}
     }
 
     @Override
     public Class<Reg> annoClass() {
         return Reg.class;
+    }
+
+    @Override
+    public String name() {
+        return "Registry";
     }
 }

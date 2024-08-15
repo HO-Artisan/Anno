@@ -22,4 +22,9 @@ public class ParentedResolver extends ModelResolver<Parented> {
     public Class<Parented> annoClass() {
         return Parented.class;
     }
+
+    @Override
+    public String name() {
+        return "Parented Models";
+    }
 }

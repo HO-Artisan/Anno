@@ -5,11 +5,13 @@ import ho.artisan.anno.core.annotation.TargetType;
 import net.minecraft.util.Identifier;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 
 public interface Resolver<A extends Annotation> {
     <T> void process(Target<T> target, Class<?> registration);
     Class<A> annoClass();
+    String name();
 
     default void process(Field field, Class<?> clazz) {
         if (isAnnotated(field) && wrap(field) != null) {
@@ -17,10 +19,12 @@ public interface Resolver<A extends Annotation> {
         }
     }
 
+    default <T> String getID(AnnotatedElement annotatedElement) {
+        return annotatedElement.getAnnotation(ID.class).value().toLowerCase();
+    }
+
     default <T> Identifier getID(Target<T> target, Class<?> registration) {
-        String namespace = registration.getAnnotation(ID.class).value().toLowerCase();
-        String path = target.field.getAnnotation(ID.class).value().toLowerCase();
-        return Identifier.of(namespace, path);
+        return Identifier.of(getID(registration), getID(target.field));
     }
 
     default boolean condition(Field field) {

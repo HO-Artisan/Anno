@@ -9,10 +9,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class AnnoLanguageProvider extends FabricLanguageProvider {
     private final Map<String, String> map;
+    private final String name;
 
-    public AnnoLanguageProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> lookup, String languageCode, Map<String, String> map) {
+    public AnnoLanguageProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> lookup, String languageCode, String name , Map<String, String> map) {
         super(output, languageCode, lookup);
         this.map = map;
+        this.name = name + "/" + languageCode;
     }
 
     @Override
@@ -22,6 +24,6 @@ public class AnnoLanguageProvider extends FabricLanguageProvider {
 
     @Override
     public String getName() {
-        return "Anno Language";
+        return name;
     }
 }

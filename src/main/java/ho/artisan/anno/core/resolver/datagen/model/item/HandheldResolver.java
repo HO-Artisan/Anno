@@ -9,15 +9,21 @@ import net.minecraft.util.Identifier;
 public class HandheldResolver extends ModelResolver<Handheld> {
     @Override
     public <T> void process(Target<T> target, Class<?> registration) {
-        Item item = (Item) target.object();
-        Identifier id = getID(target, registration);
-        String texture = target.field().getAnnotation(Handheld.class).value().replace("$", "item/" + id.getPath());
-        Identifier path = Identifier.of(id.getNamespace(), texture);
-        itemModel(generator -> generator.anno$register(item, path, Models.HANDHELD));
+        if (target.object() instanceof Item item) {
+            Identifier id = getID(target, registration);
+            String texture = target.field().getAnnotation(Handheld.class).value().replace("$", "item/" + id.getPath());
+            Identifier path = Identifier.of(id.getNamespace(), texture);
+            itemModel(generator -> generator.anno$register(item, path, Models.HANDHELD));
+        }
     }
 
     @Override
     public Class<Handheld> annoClass() {
         return Handheld.class;
+    }
+
+    @Override
+    public String name() {
+        return "Handheld Models";
     }
 }

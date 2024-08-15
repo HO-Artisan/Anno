@@ -9,13 +9,19 @@ public class FuelResolver implements Resolver<Burnable> {
 
     @Override
     public <T> void process(Target<T> target, Class<?> registration) {
-        int time = target.field().getAnnotation(Burnable.class).value();
-        Item item = (Item) target.object();
-        FuelRegistry.INSTANCE.add(item, time);
+        if (target.object() instanceof Item item) {
+            int time = target.field().getAnnotation(Burnable.class).value();
+            FuelRegistry.INSTANCE.add(item, time);
+        }
     }
 
     @Override
     public Class<Burnable> annoClass() {
         return Burnable.class;
+    }
+
+    @Override
+    public String name() {
+        return "Fuel";
     }
 }

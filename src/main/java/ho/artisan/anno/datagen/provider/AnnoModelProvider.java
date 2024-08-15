@@ -11,11 +11,13 @@ import java.util.function.Consumer;
 public class AnnoModelProvider extends FabricModelProvider {
     private final List<Consumer<BlockStateModelGenerator>> blocks;
     private final List<Consumer<ItemModelGenerator>> items;
+    private final String name;
 
-    public AnnoModelProvider(FabricDataOutput output, List<Consumer<BlockStateModelGenerator>> blocks, List<Consumer<ItemModelGenerator>> items) {
+    public AnnoModelProvider(FabricDataOutput output, List<Consumer<BlockStateModelGenerator>> blocks, List<Consumer<ItemModelGenerator>> items, String name) {
         super(output);
         this.blocks = blocks;
         this.items = items;
+        this.name = name;
     }
 
     @Override
@@ -30,6 +32,6 @@ public class AnnoModelProvider extends FabricModelProvider {
 
     @Override
     public String getName() {
-        return "Anno Models";
+        return name;
     }
 }

@@ -4,6 +4,7 @@ import ho.artisan.anno.core.annotation.ID;
 import ho.artisan.anno.core.resolver.DataGenResolver;
 import ho.artisan.anno.core.resolver.Resolver;
 import ho.artisan.anno.core.resolver.datagen.LangResolver;
+import ho.artisan.anno.core.resolver.datagen.loot.DropSelfResolver;
 import ho.artisan.anno.core.resolver.datagen.model.block.CubeAllResolver;
 import ho.artisan.anno.core.resolver.datagen.model.item.GeneratedResolver;
 import ho.artisan.anno.core.resolver.datagen.model.item.HandheldResolver;
@@ -31,8 +32,6 @@ public class AnnoResolvers {
     static {
         //Registry
         register(id("registry"), new RegResolver());
-        //Fuel
-        register(id("fuel"), new FuelResolver());
 
         //Datagen
         //Lang
@@ -44,6 +43,11 @@ public class AnnoResolvers {
         //Block
         register(id("cube_all"), new CubeAllResolver());
         register(id("parented"), new ParentedResolver());
+        //LootTable
+        register(id("drop_self"), new DropSelfResolver());
+
+        //Fuel
+        register(id("fuel"), new FuelResolver());
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -77,13 +81,13 @@ public class AnnoResolvers {
                 Identifier id = entry.getKey();
                 DataGenResolver<?> resolver = entry.getValue();
                 if (filter.test(id)) {
-                    fields.parallelStream()
+                    fields.stream()
                             .filter(field -> field.isAnnotationPresent(ID.class))
                             .filter(resolver::condition)
                             .map(resolver::wrap)
                             .filter(Objects::nonNull)
                             .forEach(target -> resolver.process(target, registration));
-                    resolver.apply(generator, pack);
+                    resolver.apply(generator, pack, registration);
                 }
             }
         }else {
@@ -102,7 +106,7 @@ public class AnnoResolvers {
                 Identifier id = entry.getKey();
                 Resolver<?> resolver = entry.getValue();
                 if (filter.test(id)) {
-                    fields.parallelStream()
+                    fields.stream()
                             .filter(field -> field.isAnnotationPresent(ID.class))
                             .filter(resolver::condition)
                             .map(resolver::wrap)
