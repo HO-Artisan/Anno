@@ -8,11 +8,7 @@ import java.util.Map;
 public class AnnoLanguageProvider extends FabricLanguageProvider {
     private final Map<String, String > map;
 
-<<<<<<< Updated upstream
     public AnnoLanguageProvider(FabricDataOutput output, String languageCode, Map<String, String> map) {
-=======
-    public AnnoLanguageProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> lookup, String languageCode, String name , Map<String, String> map) {
->>>>>>> Stashed changes
         super(output, languageCode);
         this.map = map;
     }

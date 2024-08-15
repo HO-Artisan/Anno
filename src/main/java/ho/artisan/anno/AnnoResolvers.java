@@ -77,7 +77,7 @@ public class AnnoResolvers {
                 Identifier id = entry.getKey();
                 DataGenResolver<?> resolver = entry.getValue();
                 if (filter.test(id)) {
-                    fields.parallelStream()
+                    fields.stream()
                             .filter(field -> field.isAnnotationPresent(ID.class))
                             .filter(resolver::condition)
                             .map(resolver::wrap)
@@ -102,7 +102,7 @@ public class AnnoResolvers {
                 Identifier id = entry.getKey();
                 Resolver<?> resolver = entry.getValue();
                 if (filter.test(id)) {
-                    fields.parallelStream()
+                    fields.stream()
                             .filter(field -> field.isAnnotationPresent(ID.class))
                             .filter(resolver::condition)
                             .map(resolver::wrap)

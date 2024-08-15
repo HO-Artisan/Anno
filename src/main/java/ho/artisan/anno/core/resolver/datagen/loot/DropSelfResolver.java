@@ -14,8 +14,8 @@ public class DropSelfResolver implements DataGenResolver<DropSelf> {
     private final List<Block> blocks = new ArrayList<>();
 
     @Override
-    public void apply(FabricDataGenerator generator, FabricDataGenerator.Pack pack, Class<?> registration) {
-        pack.addProvider((FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>) (output, registriesFuture) -> new DropSelfLootTableProvider(output, blocks, name()));
+    public void apply(FabricDataGenerator generator, FabricDataGenerator.Pack pack) {
+        pack.addProvider((FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>) (output, registriesFuture) -> new DropSelfLootTableProvider(output, blocks));
     }
 
     @Override
@@ -28,10 +28,5 @@ public class DropSelfResolver implements DataGenResolver<DropSelf> {
     @Override
     public Class<DropSelf> annoClass() {
         return DropSelf.class;
-    }
-
-    @Override
-    public String name() {
-        return "Drop Self Loot Table";
     }
 }
