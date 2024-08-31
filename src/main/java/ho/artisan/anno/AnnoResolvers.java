@@ -1,6 +1,7 @@
 package ho.artisan.anno;
 
 import ho.artisan.anno.core.annotation.ID;
+import ho.artisan.anno.core.resolver.ClientResolver;
 import ho.artisan.anno.core.resolver.DataGenResolver;
 import ho.artisan.anno.core.resolver.Resolver;
 import ho.artisan.anno.core.resolver.datagen.LangResolver;
@@ -11,6 +12,8 @@ import ho.artisan.anno.core.resolver.datagen.model.item.HandheldResolver;
 import ho.artisan.anno.core.resolver.datagen.model.item.ParentedResolver;
 import ho.artisan.anno.core.resolver.vanilla.FuelResolver;
 import ho.artisan.anno.core.resolver.vanilla.RegResolver;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -28,6 +31,9 @@ import static ho.artisan.anno.Anno.id;
 public class AnnoResolvers {
     private static final ConcurrentHashMap<Identifier, Resolver<?>> RESOLVERS = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<Identifier, DataGenResolver<?>> DATAGEN_RESOLVERS = new ConcurrentHashMap<>();
+
+    @Environment(EnvType.CLIENT)
+    private static final ConcurrentHashMap<Identifier, ClientResolver<?>> CLIENT_RESOLVERS = new ConcurrentHashMap<>();
 
     static {
         //Registry
@@ -54,6 +60,8 @@ public class AnnoResolvers {
     public static synchronized <A extends Annotation> Resolver<A> register(Identifier id, Resolver<A> resolver) {
         if (resolver instanceof DataGenResolver<A> dataGenResolver)
             DATAGEN_RESOLVERS.put(id, dataGenResolver);
+        else if (resolver instanceof ClientResolver<A> clientResolver)
+            CLIENT_RESOLVERS.put(id, clientResolver);
         else
             RESOLVERS.put(id, resolver);
         return resolver;
@@ -103,6 +111,30 @@ public class AnnoResolvers {
         if (registration.isAnnotationPresent(ID.class)) {
             List<Field> fields = List.of(registration.getFields());
             for (Map.Entry<Identifier, Resolver<?>> entry : RESOLVERS.entrySet()) {
+                Identifier id = entry.getKey();
+                Resolver<?> resolver = entry.getValue();
+                if (filter.test(id)) {
+                    fields.stream()
+                            .filter(field -> field.isAnnotationPresent(ID.class))
+                            .filter(resolver::condition)
+                            .map(resolver::wrap)
+                            .filter(Objects::nonNull)
+                            .forEach(target -> resolver.process(target, registration));
+                }
+            }
+        }else {
+            throw new RuntimeException(registration + " must be annotated by " + ID.class);
+        }
+    }
+
+    public static void clientResolve(Class<?> registration) {
+        clientResolve(registration, identifier -> true);
+    }
+
+    public static void clientResolve(Class<?> registration, Predicate<Identifier> filter) {
+        if (registration.isAnnotationPresent(ID.class)) {
+            List<Field> fields = List.of(registration.getFields());
+            for (Map.Entry<Identifier, ClientResolver<?>> entry : CLIENT_RESOLVERS.entrySet()) {
                 Identifier id = entry.getKey();
                 Resolver<?> resolver = entry.getValue();
                 if (filter.test(id)) {
