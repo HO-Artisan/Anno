@@ -1,5 +1,6 @@
 plugins {
     id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'maven-publish'
 }
 
 version = "$project.minecraft_version-$project.mod_version"
@@ -61,5 +62,21 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'ho.artisan'
+            artifactId = 'anno'
+            version = '1.18.2-2.0.0'
+
+            from components.java
+        }
+    }
+
+    repositories {
+
     }
 }
