@@ -28,7 +28,8 @@
       "ho.artisan.anno.resolver.ParentedResolver",
       "ho.artisan.anno.resolver.CubeAllResolver",
       "ho.artisan.anno.resolver.GeneratedResolver",
-      "ho.artisan.anno.resolver.HandheldResolver"
+      "ho.artisan.anno.resolver.HandheldResolver",
+      "ho.artisan.anno.resolver.DropSelfResolver"
     ],
     "ho-client-resolver": [
 

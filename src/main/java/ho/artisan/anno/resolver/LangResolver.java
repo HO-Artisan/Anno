@@ -24,7 +24,7 @@ public class LangResolver implements DataGenResolver<Lang> {
         for (Lang lang : langs) {
             String key = lang.key().replace("$0", id.getNamespace()).replace("$1", id.getPath());
             if (entry.has(Reg.class)) {
-                String part = entry.get(Reg.class).value() + "." + id.getNamespace() + "." + id.getNamespace();
+                String part = entry.get(Reg.class).value() + "." + id.getNamespace() + "." + id.getPath();
                 key = key.replace("$", part);
             }else {
                 if (key.equals("$"))

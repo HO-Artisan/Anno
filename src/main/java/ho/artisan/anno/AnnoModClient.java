@@ -6,6 +6,6 @@ public class AnnoModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        AnnoUtil.clientLoad();
+        AnnoCore.INSTANCE.clientLoad();
     }
 }
