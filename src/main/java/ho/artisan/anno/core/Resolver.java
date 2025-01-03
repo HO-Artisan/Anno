@@ -6,12 +6,12 @@ import net.minecraft.util.Identifier;
 import java.lang.annotation.Annotation;
 
 public interface Resolver<A extends Annotation> {
-    void process(Entry entry, Registration registration);
+    void process(Entry entry, EntryContainer registration);
 
     Class<A> aClass();
 
-    default Identifier genID(Entry entry, Registration registration) {
-        return new Identifier(registration.id(), entry.id());
+    default Identifier genID(Entry entry, EntryContainer container) {
+        return new Identifier(container.id(), entry.id());
     }
 
     default boolean isSuitable(Entry entry) {

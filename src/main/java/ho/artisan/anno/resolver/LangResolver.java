@@ -5,6 +5,7 @@ import ho.artisan.anno.annotation.datagen.Lang;
 import ho.artisan.anno.annotation.vanilla.Reg;
 import ho.artisan.anno.core.DataGenResolver;
 import ho.artisan.anno.core.Entry;
+import ho.artisan.anno.core.EntryContainer;
 import ho.artisan.anno.core.Registration;
 import ho.artisan.anno.datagen.provider.AnnoLanguages;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -17,7 +18,7 @@ public class LangResolver implements DataGenResolver<Lang> {
     private final AnnoLanguages.Dictionary dictionary = new AnnoLanguages.Dictionary();
 
     @Override
-    public void process(Entry entry, Registration registration) {
+    public void process(Entry entry, EntryContainer registration) {
         List<Lang> langs = entry.getRepeated(Lang.class);
         Identifier id = genID(entry, registration);
 

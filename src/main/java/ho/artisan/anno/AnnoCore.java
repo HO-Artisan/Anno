@@ -11,6 +11,9 @@ import java.util.List;
 
 import static ho.artisan.anno.AnnoMod.LOGGER;
 
+/**
+ * The Anno Core is an instance containing core methods of the Anno Mod.
+ */
 public class AnnoCore {
     private AnnoCore() {}
 
@@ -21,6 +24,9 @@ public class AnnoCore {
     public static final String CLIENT_RESOLVER_ENTRYPOINT = "ho-client-resolver";
     public static final String REGISTRATION_ENTRYPOINT = "ho-registration";
 
+    /**
+     * Normal loading at both ends.
+     */
     @SuppressWarnings("rawtypes")
     public void load() {
         FabricLoader loader = FabricLoader.getInstance();
@@ -46,6 +52,9 @@ public class AnnoCore {
         }
     }
 
+    /**
+     * Client loading at both ends.
+     */
     @Environment(EnvType.CLIENT)
     @SuppressWarnings("rawtypes")
     public void clientLoad() {
@@ -72,6 +81,9 @@ public class AnnoCore {
         }
     }
 
+    /**
+     * Loading when data generating.
+     */
     @SuppressWarnings("rawtypes")
     public void datagenLoad(FabricDataGenerator generator) {
         String id = generator.getModId();

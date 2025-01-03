@@ -4,6 +4,7 @@ import ho.artisan.anno.annotation.ID;
 import ho.artisan.anno.annotation.datagen.DropSelf;
 import ho.artisan.anno.core.DataGenResolver;
 import ho.artisan.anno.core.Entry;
+import ho.artisan.anno.core.EntryContainer;
 import ho.artisan.anno.core.Registration;
 import ho.artisan.anno.datagen.provider.AnnoBlockLootTables;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -22,7 +23,7 @@ public class DropSelfResolver implements DataGenResolver<DropSelf> {
     }
 
     @Override
-    public void process(Entry entry, Registration registration) {
+    public void process(Entry entry, EntryContainer registration) {
         if (entry.is(Block.class)) {
             blocks.add(entry.cast(Block.class));
         }

@@ -14,8 +14,11 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
+/**
+ * This is an example registration using the Anno Mod`s functions.
+ */
 @ID("anno")
-public class AnnoRegistration {
+public final class AnnoRegistration {
     @DropSelf
     @Lang(langCode = "en_us", value = "Iron Coal Block")
     @Lang(langCode = "zh_cn", value = "铁煤炭块")

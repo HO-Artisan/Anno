@@ -3,7 +3,7 @@ package ho.artisan.anno.resolver;
 import ho.artisan.anno.annotation.ID;
 import ho.artisan.anno.annotation.datagen.model.Parented;
 import ho.artisan.anno.core.Entry;
-import ho.artisan.anno.core.Registration;
+import ho.artisan.anno.core.EntryContainer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 @ID("parented")
 public class ParentedResolver extends ModelResolver<Parented> {
     @Override
-    public void process(Entry entry, Registration registration) {
+    public void process(Entry entry, EntryContainer registration) {
         Identifier id = genID(entry, registration);
         Identifier parent = new Identifier(entry.get(Parented.class).value());
 

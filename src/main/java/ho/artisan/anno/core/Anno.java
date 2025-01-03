@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Anno is a class containing annotations, they will be saved as a list at initialization time.
+ */
 public class Anno {
     private final List<Annotation> annotations = new ArrayList<>();
 
@@ -20,6 +23,9 @@ public class Anno {
         Collections.addAll(annotations, element.getAnnotations());
     }
 
+    /**
+     * Adding other Anno's the designated annotation to this.
+     */
     public <A extends Annotation> void add(Anno anno, Class<A> aClass) {
         for (Annotation annotation : annotations) {
             if (annotation.annotationType() != aClass)
@@ -27,6 +33,9 @@ public class Anno {
         }
     }
 
+    /**
+     * A method which can get repeated annotation, it will return as a list.
+     */
     @SuppressWarnings({"UnstableApiUsage", "unchecked"})
     public <A extends Annotation> List<A> getRepeated(Class<A> aClass) {
         Class<? extends Annotation> repeatable = new Anno(aClass).repeated();
@@ -37,10 +46,16 @@ public class Anno {
         return a == null ? List.of() : List.of(a);
     }
 
+    /**
+     * Whether this has the designated annotation.
+     */
     public <A extends Annotation> boolean has(Class<A> aClass) {
         return get(aClass) != null;
     }
 
+    /**
+     * Get the designated annotation.
+     */
     public <A extends Annotation> A get(Class<A> aClass) {
         for (Annotation annotation : annotations) {
             if (annotation.annotationType() == aClass)
@@ -49,10 +64,16 @@ public class Anno {
         return null;
     }
 
+    /**
+     * Return this Anno`s id, which is located in {@link ID} annotation.
+     */
     public String id() {
         return get(ID.class).value();
     }
 
+    /**
+     * Return this Anno`s priority, which is located {@link Priority} annotation.
+     */
     public int priority() {
         Priority priority = get(Priority.class);
         if (priority == null)
@@ -60,6 +81,9 @@ public class Anno {
         return priority.value();
     }
 
+    /**
+     * Get this Anno`s {@link Repeatable} annotation if any.
+     */
     @Nullable
     public Class<? extends Annotation> repeated() {
         Repeatable repeatable = get(Repeatable.class);
@@ -69,6 +93,9 @@ public class Anno {
         return repeatable.value();
     }
 
+    /**
+     * Get this Anno`s all annotations.
+     */
     public List<Annotation> getAnnotations() {
         return List.copyOf(annotations);
     }
