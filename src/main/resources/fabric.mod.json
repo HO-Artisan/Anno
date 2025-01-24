@@ -13,32 +13,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "ho.artisan.anno.AnnoModClient"
+
     ],
     "main": [
       "ho.artisan.anno.AnnoMod"
-    ],
-    "ho-resolver": [
-      "ho.artisan.anno.resolver.RegResolver",
-      "ho.artisan.anno.resolver.FuelResolver"
-
-    ],
-    "ho-datagen-resolver": [
-      "ho.artisan.anno.resolver.LangResolver",
-      "ho.artisan.anno.resolver.ParentedResolver",
-      "ho.artisan.anno.resolver.CubeAllResolver",
-      "ho.artisan.anno.resolver.GeneratedResolver",
-      "ho.artisan.anno.resolver.HandheldResolver",
-      "ho.artisan.anno.resolver.DropSelfResolver"
-    ],
-    "ho-client-resolver": [
-
-    ],
-    "ho-registration": [
-      "ho.artisan.anno.AnnoRegistration"
-    ],
-    "fabric-datagen": [
-      "ho.artisan.anno.AnnoModDataGen"
     ]
   },
   "mixins": [

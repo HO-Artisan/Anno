@@ -12,7 +12,7 @@ public class AnnoMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        AnnoCore.INSTANCE.load();
+
     }
 
     public static Identifier id(String path) {
