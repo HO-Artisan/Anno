@@ -10,6 +10,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Anno 是一个用于管理注解的操作单元。
+ */
 public class Anno {
     private final Map<Class<? extends Annotation>, Annotation> map;
 
