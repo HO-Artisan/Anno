@@ -10,21 +10,23 @@ import java.util.function.Predicate;
  */
 public final class Instance extends Anno {
     private final List<Field> fields;
+    private final Object value;
 
-    private Instance(Class<?> clazz) {
+    private Instance(Object object, Class<?> clazz) {
         super(clazz);
+        this.value = object;
         fields = Arrays.asList(clazz.getDeclaredFields());
     }
 
-    public List<Entry> entries() {
-        return fields.stream().map((Entry::wrap)).toList();
+    public List<Value> values() {
+        return fields.stream().map(field -> Value.wrap(value, field)).toList();
     }
 
-    public List<Entry> filter(Predicate<Entry> entryPredicate) {
-        return fields.stream().map((Entry::wrap)).filter(entryPredicate).toList();
+    public List<Value> filter(Predicate<Value> entryPredicate) {
+        return fields.stream().map(field -> Value.wrap(value, field)).toList();
     }
 
-    public static Instance wrap(Class<?> clazz) {
-        return new Instance(clazz);
+    public static Instance wrap(Object object, Class<?> clazz) {
+        return new Instance(object, clazz);
     }
 }

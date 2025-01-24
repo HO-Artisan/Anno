@@ -9,10 +9,10 @@ import java.lang.reflect.Modifier;
 public final class Value extends Anno {
     private final Object value;
 
-    private Value(Field field) throws IllegalAccessException {
+    private Value(Object instance, Field field) throws IllegalAccessException {
         super(field);
         field.setAccessible(true);
-        value = field.get(null);
+        value = field.get(instance);
     }
 
     public <T> T cast(Class<T> tClass) {
@@ -23,11 +23,11 @@ public final class Value extends Anno {
         return tClass.isInstance(value);
     }
 
-    public static Value wrap(Field field) {
+    public static Value wrap(Object instance, Field field) {
         try {
             if (Modifier.isStatic(field.getModifiers()))
                 throw new RuntimeException(field + " is static! Please use " + Entry.class);
-            return new Value(field);
+            return new Value(instance, field);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
