@@ -1,12 +1,14 @@
 package ho.artisan.anno.core;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 /**
  * Entry 是一个包装静态字段的操作单元。
  */
-public final class Entry extends Anno {
+public final class Entry extends Anno implements Comparable<Entry> {
     private final Object value;
 
     private Entry(Field field) throws IllegalAccessException {
@@ -31,5 +33,10 @@ public final class Entry extends Anno {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public int compareTo(@NotNull Entry entry) {
+        return this.priority() - entry.priority();
     }
 }

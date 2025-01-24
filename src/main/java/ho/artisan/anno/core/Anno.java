@@ -1,6 +1,7 @@
 package ho.artisan.anno.core;
 
-import org.jetbrains.annotations.ApiStatus;
+import ho.artisan.anno.core.annotation.ID;
+import ho.artisan.anno.core.annotation.Priority;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
@@ -30,13 +31,19 @@ public class Anno {
         return aClass.isInstance(map.get(aClass));
     }
 
-    @ApiStatus.Experimental
     public <A extends Annotation> void add(A annotation) {
         map.put(annotation.annotationType(), annotation);
     }
 
-    @ApiStatus.Experimental
     public <A extends Annotation> void remove(Class<A> aClass) {
         map.remove(aClass);
+    }
+
+    public String id() {
+        return get(ID.class).value();
+    }
+
+    public int priority() {
+        return get(Priority.class).value();
     }
 }

@@ -1,6 +1,8 @@
 package ho.artisan.anno.core;
 
-import java.lang.reflect.Field;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -8,25 +10,35 @@ import java.util.function.Predicate;
 /**
  * Registration是一个包装成员变量的操作单元。
  */
-public final class Instance extends Anno {
-    private final List<Field> fields;
-    private final Object value;
+public final class Instance extends Anno implements Comparable<Instance> {
+    private final List<Value> values;
+    private final Object object;
 
     private Instance(Object object, Class<?> clazz) {
         super(clazz);
-        this.value = object;
-        fields = Arrays.asList(clazz.getDeclaredFields());
+        this.object = object;
+        values = Arrays.stream(clazz.getDeclaredFields()).map(field -> Value.wrap(this.object, field)).sorted().toList();
     }
 
     public List<Value> values() {
-        return fields.stream().map(field -> Value.wrap(value, field)).toList();
+        return values;
     }
 
-    public List<Value> filter(Predicate<Value> entryPredicate) {
-        return fields.stream().map(field -> Value.wrap(value, field)).toList();
+    public List<Value> filter(Predicate<Value> predicate) {
+        List<Value> list = new ArrayList<>();
+        for (Value value : values) {
+            if (predicate.test(value))
+                list.add(value);
+        }
+        return list;
     }
 
     public static Instance wrap(Object object, Class<?> clazz) {
         return new Instance(object, clazz);
+    }
+
+    @Override
+    public int compareTo(@NotNull Instance instance) {
+        return this.priority() - instance.priority();
     }
 }

@@ -1,12 +1,14 @@
 package ho.artisan.anno.core;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 /**
  * Entry 是一个包装成员字段的操作单元。
  */
-public final class Value extends Anno {
+public final class Value extends Anno implements Comparable<Value> {
     private final Object value;
 
     private Value(Object instance, Field field) throws IllegalAccessException {
@@ -31,5 +33,10 @@ public final class Value extends Anno {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public int compareTo(@NotNull Value value) {
+        return this.priority() - value.priority();
     }
 }

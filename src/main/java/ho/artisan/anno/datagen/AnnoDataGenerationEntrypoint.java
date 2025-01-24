@@ -1,24 +1,21 @@
-package ho.artisan.anno;
+package ho.artisan.anno.datagen;
 
+import ho.artisan.anno.AnnoEntrypoint;
 import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
+import ho.artisan.anno.core.resolver.DataGenerationResolver;
 import ho.artisan.anno.core.resolver.Resolver;
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.loader.api.FabricLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AnnoMod implements ModInitializer {
-    public static final String MOD_ID = "anno";
-    public static final String MOD_NAME = "Anno";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
-
+public class AnnoDataGenerationEntrypoint implements DataGeneratorEntrypoint {
     @Override
-    public void onInitialize() {
+    public void onInitializeDataGenerator(FabricDataGenerator generator) {
         final List<AnnoEntrypoint> entrypoints = FabricLoader.getInstance().getEntrypoints("anno-entrypoint", AnnoEntrypoint.class);
         final List<Resolver> resolvers = new ArrayList<>();
         final List<Registration> registrations = new ArrayList<>();
@@ -31,9 +28,8 @@ public class AnnoMod implements ModInitializer {
         for (Registration registration : registrations) {
             for (Entry entry : registration.entries()) {
                 for (Resolver resolver : resolvers) {
-                    resolver.before(registration);
-                    resolver.process(entry, registration);
-                    resolver.after(registration);
+                    if (resolver instanceof DataGenerationResolver dataGenerationResolver)
+                        dataGenerationResolver.load(generator);
                 }
             }
         }
