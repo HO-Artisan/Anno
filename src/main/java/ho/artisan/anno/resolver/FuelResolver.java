@@ -17,7 +17,7 @@ public final class FuelResolver implements Resolver {
     public void process(Entry entry, Registration registration) {
         Item item = entry.cast(Item.class);
         Fuel fuel = entry.get(Fuel.class);
-        FuelRegistry.INSTANCE.add(item, fuel.value());
+        FuelRegistry.INSTANCE.add(item, fuel.time());
     }
 
     @Override

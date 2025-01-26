@@ -17,10 +17,16 @@ public final class Entry extends Anno implements Comparable<Entry> {
         value = field.get(null);
     }
 
+    /**
+     * 将Entry转换成某一具体类型。
+     */
     public <T> T cast(Class<T> tClass) {
         return tClass.cast(value);
     }
 
+    /**
+     * 判断Entry是否为某一具体类型。
+     */
     public <T> boolean is(Class<T> tClass) {
         return tClass.isInstance(value);
     }

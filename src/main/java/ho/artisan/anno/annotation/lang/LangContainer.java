@@ -1,4 +1,4 @@
-package ho.artisan.anno.annotation;
+package ho.artisan.anno.annotation.lang;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Fuel {
-    int time();
+public @interface LangContainer {
+    Lang[] value();
 }

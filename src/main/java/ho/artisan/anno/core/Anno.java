@@ -23,22 +23,38 @@ public class Anno {
         );
     }
 
+    /**
+     * 根据Class类型从{@link Anno#map}获取对应注解。
+     */
     public <A extends Annotation> A get(Class<A> aClass) {
         return aClass.cast(map.get(aClass));
     }
 
+    /**
+     * 判断某一注解是否存在于{@link Anno#map}内。
+     */
     public <A extends Annotation> boolean contain(Class<A> aClass) {
         return aClass.isInstance(map.get(aClass));
     }
 
+    /**
+     * 向{@link Anno#map}添加新的注解。<br>
+     * 可配合 {@link FakeAnnotation} 使用。
+     */
     public <A extends Annotation> void add(A annotation) {
         map.put(annotation.annotationType(), annotation);
     }
 
+    /**
+     * 移除{@link Anno#map}中的某一注解类型。
+     */
     public <A extends Annotation> void remove(Class<A> aClass) {
         map.remove(aClass);
     }
 
+    /**
+     * 获取 {@link ID} 注解的值。
+     */
     public String id() {
         return get(ID.class).value();
     }

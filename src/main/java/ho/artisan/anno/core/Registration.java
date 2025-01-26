@@ -22,6 +22,9 @@ public final class Registration extends Anno implements Comparable<Registration>
         return entries;
     }
 
+    /**
+     * 筛选出特定的Entry
+     */
     public List<Entry> filter(Predicate<Entry> predicate) {
         List<Entry> list = new ArrayList<>();
         for (Entry entry : entries) {

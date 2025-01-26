@@ -1,7 +1,7 @@
 package ho.artisan.anno.core.resolver;
 
-import net.minecraft.data.DataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 public interface DataGenerationResolver extends Resolver {
-    void load(DataGenerator generator);
+    void load(FabricDataGenerator generator);
 }

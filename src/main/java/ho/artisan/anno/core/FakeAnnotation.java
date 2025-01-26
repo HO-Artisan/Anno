@@ -7,7 +7,11 @@ import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FakeAnnotation<A> implements InvocationHandler {
+/**
+ * 伪造注解的动态接口类，使用依赖注入模式。
+ * @param <A> 伪造的注解类型
+ */
+public final class FakeAnnotation<A> implements InvocationHandler {
     private final Class<A> aClass;
     private final Map<String, Object> valueMap;
 
@@ -45,6 +49,10 @@ public class FakeAnnotation<A> implements InvocationHandler {
             this.valueMap = new HashMap<>();
         }
 
+        /**
+         * @param key 伪造注解的方法名
+         * @param value 伪造注解的值
+         */
         public <T> Builder<A> fake(String key, T value) {
             valueMap.put(key, value);
             return this;
