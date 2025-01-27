@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 
-public class AnnoModelProvider extends FabricModelProvider {
+public final class AnnoModelProvider extends FabricModelProvider {
     private final ModelConductor conductor;
 
     public AnnoModelProvider(FabricDataGenerator generator, ModelConductor conductor) {

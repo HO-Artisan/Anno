@@ -4,12 +4,15 @@ import ho.artisan.anno.annotation.tip.Tip;
 import ho.artisan.anno.annotation.tip.TipContainer;
 import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
-import ho.artisan.anno.core.resolver.Resolver;
+import ho.artisan.anno.core.resolver.ClientResolver;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.item.Item;
 import net.minecraft.text.TranslatableText;
 
-public final class TipResolver implements Resolver {
+@Environment(EnvType.CLIENT)
+public final class TipResolver implements ClientResolver {
     @Override
     public boolean match(Entry entry) {
         return entry.is(Item.class) && entry.contain(TipContainer.class);

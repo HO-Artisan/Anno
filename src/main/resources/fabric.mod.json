@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "anno",
-  "version": "3.0.3",
+  "version": "3.0.5",
   "name": "Anno",
   "description": "Make annotation great again!",
   "authors": [
@@ -16,7 +16,7 @@
       "ho.artisan.anno.datagen.AnnoDataGenerationEntrypoint"
     ],
     "client": [
-
+      "ho.artisan.anno.AnnoMod"
     ],
     "main": [
       "ho.artisan.anno.AnnoMod"

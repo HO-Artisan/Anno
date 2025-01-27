@@ -14,7 +14,8 @@ import java.util.List;
 
 import static ho.artisan.anno.AnnoMod.LOGGER;
 
-public class AnnoDataGenerationEntrypoint implements DataGeneratorEntrypoint {
+public final class AnnoDataGenerationEntrypoint implements DataGeneratorEntrypoint {
+
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
         final List<AnnoEntrypoint> entrypoints = FabricLoader.getInstance().getEntrypoints(AnnoEntrypoint.KEY, AnnoEntrypoint.class);
@@ -33,15 +34,15 @@ public class AnnoDataGenerationEntrypoint implements DataGeneratorEntrypoint {
             LOGGER.info("DataGenerationResolver[{}] was loaded!", resolver.id());
         }
         for (Registration registration : registrations) {
-            for (Entry entry : registration.entries()) {
-                for (DataGenerationResolver resolver : resolvers) {
+            for (DataGenerationResolver resolver : resolvers) {
+                resolver.before(registration);
+                for (Entry entry : registration.entries()) {
                     if (resolver.match(entry)) {
-                        resolver.before(registration);
                         resolver.process(entry, registration);
-                        resolver.after(registration);
-                        resolver.load(generator, registration);
                     }
                 }
+                resolver.after(registration);
+                resolver.load(generator, registration);
             }
         }
     }
