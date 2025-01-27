@@ -14,7 +14,7 @@ public final class SimpleModelResolver implements DataGenerationResolver {
     private final ModelConductor conductor = ModelConductor.create();
 
     @Override
-    public void load(FabricDataGenerator generator) {
+    public void load(FabricDataGenerator generator, Registration registration) {
         generator.addProvider(new AnnoModelProvider(generator, conductor));
     }
 

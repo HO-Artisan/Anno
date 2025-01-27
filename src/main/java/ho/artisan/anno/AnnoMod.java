@@ -7,7 +7,7 @@ import ho.artisan.anno.core.resolver.Resolver;
 import ho.artisan.anno.resolver.EntryResolver;
 import ho.artisan.anno.resolver.FuelResolver;
 import ho.artisan.anno.resolver.SimpleModelResolver;
-import ho.artisan.anno.resolver.lang.LangResolver;
+import ho.artisan.anno.resolver.LangResolver;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;

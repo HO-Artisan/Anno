@@ -39,7 +39,7 @@ public class AnnoDataGenerationEntrypoint implements DataGeneratorEntrypoint {
                         resolver.before(registration);
                         resolver.process(entry, registration);
                         resolver.after(registration);
-                        resolver.load(generator);
+                        resolver.load(generator, registration);
                     }
                 }
             }
