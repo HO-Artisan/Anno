@@ -4,10 +4,7 @@ import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
 import ho.artisan.anno.core.resolver.DataGenerationResolver;
 import ho.artisan.anno.core.resolver.Resolver;
-import ho.artisan.anno.resolver.EntryResolver;
-import ho.artisan.anno.resolver.FuelResolver;
-import ho.artisan.anno.resolver.SimpleModelResolver;
-import ho.artisan.anno.resolver.LangResolver;
+import ho.artisan.anno.resolver.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
@@ -59,6 +56,7 @@ public class AnnoMod implements ModInitializer, AnnoEntrypoint {
         consumer.accept(new FuelResolver());
         consumer.accept(new LangResolver());
         consumer.accept(new SimpleModelResolver());
+        consumer.accept(new TipResolver());
     }
 
     @Override

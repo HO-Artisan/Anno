@@ -60,6 +60,8 @@ public class Anno {
     }
 
     public int priority() {
-        return get(Priority.class).value();
+        if (contain(Priority.class))
+            return get(Priority.class).value();
+        return 0;
     }
 }
