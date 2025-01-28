@@ -30,7 +30,7 @@ public final class LangResolver implements DataGenerationResolver {
         Lang[] langs = entry.get(LangContainer.class).value();
         RegistryType type = entry.get(RegistryType.class);
         for (Lang lang : langs) {
-            String key = type.value() + '.' + registration.id() + '.' + entry.id();
+            String key = type.value() + '.' + registration.id() + '.' + entry.id() + '.' + lang.suffix();
             langMap.add(lang.code(), key, lang.text());
         }
     }

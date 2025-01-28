@@ -6,9 +6,7 @@ import java.lang.annotation.*;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Repeatable(TipContainer.class)
 public @interface Tip {
-    String text();
-    String code();
+    String suffix() default "tip";
     Formatting[] formatting();
 }

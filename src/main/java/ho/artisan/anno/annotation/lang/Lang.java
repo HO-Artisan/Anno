@@ -10,4 +10,5 @@ public @interface Lang {
 
     String text();
 
+    String suffix() default "";
 }
