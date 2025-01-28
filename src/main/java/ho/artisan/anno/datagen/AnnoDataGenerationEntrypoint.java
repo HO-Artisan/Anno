@@ -22,10 +22,7 @@ public final class AnnoDataGenerationEntrypoint implements DataGeneratorEntrypoi
         final List<DataGenerationResolver> resolvers = new ArrayList<>();
         final List<Registration> registrations = new ArrayList<>();
         for (AnnoEntrypoint entrypoint : entrypoints) {
-            entrypoint.addResolver(resolver -> {
-                if (resolver instanceof DataGenerationResolver datagenResolver)
-                    resolvers.add(datagenResolver);
-            });
+            entrypoint.addDataGenResolver(resolvers::add);
             entrypoint.addRegistration(clazz -> registrations.add(Registration.wrap(clazz)));
         }
         Collections.sort(resolvers);

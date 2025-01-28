@@ -1,3 +1,29 @@
 # Anno
 答应我对它使用反射吧！
-![](anno_meme.jpeg)
+## 项目结构
+- core：反射核心
+  - annotation：基本注解
+    - `ID`：名称（下划线命名）
+    - `Priority`：优先级
+  - resolver：解析器接口
+    - `ClientResolver`：客户端解析器
+    - `DataGenerationResolver`：数据生成解析器
+    - `Resolver`：解析器
+  - `Anno`：注解操作单元
+  - `Entry`：静态字段包装
+  - `FakeAnnotaion`：伪造注解
+  - `Handler`：方法包装
+  - `Instance`：实例包装
+  - `Registration`：静态工具类包装
+  - `Value`：成员变量包装
+- annotation：具体注解
+  - ...
+- datagen
+  - provider：提供数据生成
+    - `AnnoLangProvider`：语言
+    - `AnnoLootTableProvider`：战利品表
+    - `AnnoModelProvier`：模型
+- resolver：具体解析器
+  - ...
+- util
+  - ..

@@ -7,7 +7,7 @@ import ho.artisan.anno.core.resolver.Resolver;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public final class EntryResolver implements Resolver {
+public final class RegistryResolver implements Resolver {
     @Override
     public boolean match(Entry entry) {
         return entry.contain(RegistryType.class);

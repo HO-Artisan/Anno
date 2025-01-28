@@ -9,4 +9,5 @@ public @interface Lang {
     String code();
 
     String text();
+
 }
