@@ -1,7 +1,7 @@
 package ho.artisan.anno;
 
-import ho.artisan.anno.core.resolver.ClientResolver;
-import ho.artisan.anno.core.resolver.DataGenerationResolver;
+import ho.artisan.anno.resolver.ClientResolver;
+import ho.artisan.anno.resolver.DataGenerationResolver;
 import ho.artisan.anno.core.resolver.Resolver;
 
 import java.util.function.Consumer;

@@ -2,10 +2,8 @@ package ho.artisan.anno.resolver;
 
 import ho.artisan.anno.annotation.RegistryType;
 import ho.artisan.anno.annotation.lang.Lang;
-import ho.artisan.anno.annotation.lang.LangContainer;
 import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
-import ho.artisan.anno.core.resolver.DataGenerationResolver;
 import ho.artisan.anno.datagen.provider.AnnoLangProvider;
 import ho.artisan.anno.util.LangMap;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -22,16 +20,19 @@ public final class LangResolver implements DataGenerationResolver {
 
     @Override
     public boolean match(Entry entry) {
-        return entry.contain(LangContainer.class) && entry.contain(RegistryType.class);
+        return entry.contain(Lang.class) && entry.contain(RegistryType.class);
     }
 
     @Override
     public void process(Entry entry, Registration registration) {
-        Lang[] langs = entry.get(LangContainer.class).value();
+        Lang.Value[] values = entry.get(Lang.class).value();
         RegistryType type = entry.get(RegistryType.class);
-        for (Lang lang : langs) {
-            String key = type.value() + '.' + registration.id() + '.' + entry.id() + '.' + lang.suffix();
-            langMap.add(lang.code(), key, lang.text());
+        for (Lang.Value value : values) {
+            String key = type.value() + '.' + registration.id() + '.' + entry.id();
+            langMap.add(value.code(), key, value.text());
+            for (int i = 0; i < value.tips().length; i++) {
+                langMap.add(value.code(), key + ".tip." + i, value.tips()[i]);
+            }
         }
     }
 

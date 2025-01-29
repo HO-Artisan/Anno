@@ -1,5 +1,6 @@
-package ho.artisan.anno.core.resolver;
+package ho.artisan.anno.resolver;
 
+import ho.artisan.anno.core.resolver.Resolver;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 

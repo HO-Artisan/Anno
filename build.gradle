@@ -70,7 +70,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'ho.artisan'
             artifactId = 'anno'
-            version = '1.18.2-2.0.0'
+            version = '3.1.9'
 
             from components.java
         }

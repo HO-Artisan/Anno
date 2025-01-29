@@ -2,7 +2,6 @@ package ho.artisan.anno.resolver;
 
 import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
-import ho.artisan.anno.core.resolver.DataGenerationResolver;
 import ho.artisan.anno.datagen.provider.AnnoModelProvider;
 import ho.artisan.anno.util.ModelConductor;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

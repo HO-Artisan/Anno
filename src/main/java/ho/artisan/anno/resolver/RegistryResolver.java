@@ -20,13 +20,11 @@ public final class RegistryResolver implements Resolver {
         Registry<Object> registry = (Registry<Object>) Registry.REGISTRIES.get(new Identifier(type.value()));
         if (registry != null)
             Registry.register(registry, new Identifier(registration.id(), entry.id()), entry.cast(Object.class));
-        else
-            throw new RuntimeException("Can't find Registry Type:" + type.value());
     }
 
     @Override
     public String id() {
-        return "entry";
+        return "registry";
     }
 
     @Override

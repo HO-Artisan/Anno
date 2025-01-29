@@ -1,11 +1,25 @@
 # Anno
 答应我对它使用反射吧！
+## 简介
+Anno是一个专注于使用注解进行Fabric模组开发的库，现阶段使用了一套包装可注解元素的处理系统，详细可以查看项目结构中的`core`。
+## 功能
+- 通用：
+  - [原版注册表类型的注册](https://wiki.fabricmc.net/zh_cn:tutorial:registry)
+  - 燃料的注册
+- 客户端：
+  - [物品提示的注册](https://wiki.fabricmc.net/zh_cn:tutorial:tooltip)
+- [数据生成](https://wiki.fabricmc.net/zh_cn:tutorial:datagen_setup)：
+  - 简单物品模型
+  - 简单方块模型
+  - 原版注册表类型的语言文件
+  - 物品提示的语言文件
 ## 项目结构
-- core：反射核心
-  - annotation：基本注解
+包名：`ho.artisan.anno`
+- [core](src/main/java/ho/artisan/anno/core)：反射核心
+  - [annotation](src/main/java/ho/artisan/anno/core/annotation)：基本注解
     - `ID`：名称（下划线命名）
     - `Priority`：优先级
-  - resolver：解析器接口
+  - [resolver](src/main/java/ho/artisan/anno/core/resolver)：解析器接口
     - `ClientResolver`：客户端解析器
     - `DataGenerationResolver`：数据生成解析器
     - `Resolver`：解析器
@@ -16,14 +30,14 @@
   - `Instance`：实例包装
   - `Registration`：静态工具类包装
   - `Value`：成员变量包装
-- annotation：具体注解
+- [annotation](src/main/java/ho/artisan/anno/annotation)：具体注解
   - ...
-- datagen
-  - provider：提供数据生成
+- [datagen](src/main/java/ho/artisan/anno/datagen)：数据生成
+  - [provider](src/main/java/ho/artisan/anno/datagen/provider)：提供者
     - `AnnoLangProvider`：语言
     - `AnnoLootTableProvider`：战利品表
     - `AnnoModelProvier`：模型
-- resolver：具体解析器
+- [resolver](src/main/java/ho/artisan/anno/resolver)：具体解析器
   - ...
-- util
+- [util](src/main/java/ho/artisan/anno/util)
   - ..

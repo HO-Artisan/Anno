@@ -2,8 +2,8 @@ package ho.artisan.anno;
 
 import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
-import ho.artisan.anno.core.resolver.ClientResolver;
-import ho.artisan.anno.core.resolver.DataGenerationResolver;
+import ho.artisan.anno.resolver.ClientResolver;
+import ho.artisan.anno.resolver.DataGenerationResolver;
 import ho.artisan.anno.core.resolver.Resolver;
 import ho.artisan.anno.resolver.*;
 import net.fabricmc.api.ClientModInitializer;

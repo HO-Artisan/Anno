@@ -4,11 +4,16 @@ import java.lang.annotation.*;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Repeatable(LangContainer.class)
 public @interface Lang {
-    String code();
+    Value[] value();
 
-    String text();
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface Value {
+        String code() default "en_us";
 
-    String suffix() default "";
+        String text();
+
+        String[] tips() default {};
+    }
 }

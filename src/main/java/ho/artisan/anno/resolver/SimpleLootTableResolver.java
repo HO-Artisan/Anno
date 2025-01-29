@@ -3,7 +3,6 @@ package ho.artisan.anno.resolver;
 import ho.artisan.anno.annotation.loot.SimpleLootTable;
 import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
-import ho.artisan.anno.core.resolver.DataGenerationResolver;
 import ho.artisan.anno.datagen.provider.AnnoLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.block.Block;

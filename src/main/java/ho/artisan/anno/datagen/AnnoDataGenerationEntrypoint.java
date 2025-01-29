@@ -3,7 +3,7 @@ package ho.artisan.anno.datagen;
 import ho.artisan.anno.AnnoEntrypoint;
 import ho.artisan.anno.core.Entry;
 import ho.artisan.anno.core.Registration;
-import ho.artisan.anno.core.resolver.DataGenerationResolver;
+import ho.artisan.anno.resolver.DataGenerationResolver;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.loader.api.FabricLoader;
